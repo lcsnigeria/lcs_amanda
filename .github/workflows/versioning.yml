@@ -1,0 +1,37 @@
+name: Auto Versioning
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  versioning:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Get latest tag
+        id: get_tag
+        run: echo "TAG=$(git describe --tags --abbrev=0 || echo v1.0.0)" >> $GITHUB_ENV
+
+      - name: Increment patch version
+        id: new_version
+        run: |
+          TAG=$TAG
+          MAJOR=$(echo $TAG | cut -d. -f1 | tr -d 'v')
+          MINOR=$(echo $TAG | cut -d. -f2)
+          PATCH=$(echo $TAG | cut -d. -f3)
+          PATCH=$((PATCH + 1))
+          NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
+          echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+
+      - name: Get latest commit message
+        id: commit_message
+        run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
+
+      - name: Create new tag
+        run: |
+          git tag -a ${{ steps.new_version.outputs.NEW_VERSION }} -m "${{ steps.commit_message.outputs.COMMIT_MESSAGE }}"
+          git push origin ${{ steps.new_version.outputs.NEW_VERSION }}
