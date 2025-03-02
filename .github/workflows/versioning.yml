@@ -14,24 +14,32 @@ jobs:
 
       - name: Get latest tag
         id: get_tag
-        run: echo "TAG=$(git describe --tags --abbrev=0 || echo v1.0.0)" >> $GITHUB_ENV
+        run: |
+          LATEST_TAG=$(git describe --tags --abbrev=0 2>/dev/null || echo "v1.0.0")
+          echo "LATEST_TAG=$LATEST_TAG" >> $GITHUB_ENV
 
       - name: Increment patch version
         id: new_version
         run: |
-          TAG=$TAG
+          TAG="${{ env.LATEST_TAG }}"
           MAJOR=$(echo $TAG | cut -d. -f1 | tr -d 'v')
           MINOR=$(echo $TAG | cut -d. -f2)
           PATCH=$(echo $TAG | cut -d. -f3)
           PATCH=$((PATCH + 1))
           NEW_VERSION="v$MAJOR.$MINOR.$PATCH"
           echo "NEW_VERSION=$NEW_VERSION" >> $GITHUB_ENV
+          echo "::set-output name=NEW_VERSION::$NEW_VERSION"
 
       - name: Get latest commit message
         id: commit_message
-        run: echo "COMMIT_MESSAGE=$(git log -1 --pretty=%B)" >> $GITHUB_ENV
-
-      - name: Create new tag
         run: |
-          git tag -a ${{ steps.new_version.outputs.NEW_VERSION }} -m "${{ steps.commit_message.outputs.COMMIT_MESSAGE }}"
-          git push origin ${{ steps.new_version.outputs.NEW_VERSION }}
+          COMMIT_MESSAGE=$(git log -1 --pretty=%B)
+          echo "COMMIT_MESSAGE=$COMMIT_MESSAGE" >> $GITHUB_ENV
+          echo "::set-output name=COMMIT_MESSAGE::$COMMIT_MESSAGE"
+
+      - name: Create and push new tag
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+          git tag -a "${{ env.NEW_VERSION }}" -m "${{ env.COMMIT_MESSAGE }}"
+          git push origin "${{ env.NEW_VERSION }}"
