@@ -1,0 +1,29 @@
+{
+    "name": "lcsng/amanda",
+    "description": "Amanda is a lightweight and flexible PHP routing library that dynamically maps website URLs to template files without requiring manual route definitions or directory structures. Simply place your .php or .html templates inside the amanda_templates/ directory, and Amanda will automatically serve them based on the requested URL. Easily customize template paths, override defaults, and streamline page routing for faster, more efficient web development.",
+    "type": "library",
+    "license": "GPL-3.0-or-later",
+    "autoload": {
+        "psr-4": {
+            "LCSNG_AMANDA\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.3",
+        "lcsng/external": "^1.0.1"
+    },
+    "authors": [
+        {
+            "name": "JCFuniverse",
+            "email": "justicefrewen@gmail.com"
+        },
+        {
+            "name": "lcsnigeria",
+            "email": "loadedchannelsolutions@gmail.com"
+        },
+        {
+            "name": "mayaoflagos",
+            "email": "stanleyikoh@gmail.com"
+        }
+    ]
+}
