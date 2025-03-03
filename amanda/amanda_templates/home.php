@@ -4,9 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LCS Amanda - Lightweight PHP Framework</title>
+    <?php echo amanda_favicon(); ?>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             margin: 0;
             padding: 0;
             background-color: white;
@@ -37,6 +46,7 @@
             color: #0073e6;
             text-align: center;
             font-size: clamp(38px, 5vw, 48px);
+            margin-bottom: 1.5rem;
         }
         p {
             font-size: 1.1em;
