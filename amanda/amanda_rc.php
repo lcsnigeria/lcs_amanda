@@ -18,7 +18,7 @@
 /**
  * Include LCS External class autoloader
  */
-require_once ( __DIR__ . '/../lcs_ext_library/vendor/autoload.php' );
+require_once ( __DIR__ . '/../vendor/autoload.php' );
 
 // Initialize the request controller
 use LCSNG_EXT\Requests\LCS_Request;

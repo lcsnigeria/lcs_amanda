@@ -1,0 +1,30 @@
+{
+    "name": "lcsng/external",
+    "description": "External library for the LCS platforms management.",
+    "type": "library",
+    "license": "proprietary",
+    "autoload": {
+        "psr-4": {
+            "LCSNG_EXT\\": "src/"
+        }
+    },
+    "require": {
+        "php": "^8.3",
+        "vlucas/phpdotenv": "^5.6",
+        "phpmailer/phpmailer": "^6.8"
+    },
+    "authors": [
+        {
+            "name": "JCFuniverse",
+            "email": "justicefrewen@gmail.com"
+        },
+        {
+            "name": "lcsnigeria",
+            "email": "loadedchannelsolutions@gmail.com"
+        },
+        {
+            "name": "mayaoflagos",
+            "email": "stanleyikoh@gmail.com"
+        }
+    ]
+}
