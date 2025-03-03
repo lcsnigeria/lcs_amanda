@@ -56,6 +56,10 @@ function amanda_backdoor_processes() {
             $accessEmail = $data['access_email'] ?? null;
             $accessKey = $data['access_key'] ?? null;
 
+            if (AMANDA_BACKDOOR_EMAIL === 'username@example.com') {
+                throw new Exception('🔐 Authentication failed! Please change default credentials settings.');
+            }
+
             if ($accessEmail !== AMANDA_BACKDOOR_EMAIL || $accessKey !== AMANDA_BACKDOOR_ACCESS_KEY) {
                 throw new Exception('🔐 Missing or invalid access credentials! Authentication failed.');
             }

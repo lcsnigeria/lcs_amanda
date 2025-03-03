@@ -21,7 +21,7 @@ date_default_timezone_set('Africa/Lagos');
 /**
  * Amanda backdoor email
  */
-define('AMANDA_BACKDOOR_EMAIL', 'justicefrewen@gmail.com'); // Please change this to your desired email address.
+define('AMANDA_BACKDOOR_EMAIL', 'username@example.com'); // Please change this to your desired email address.
 
 /**
  * Amanda backdoor access key

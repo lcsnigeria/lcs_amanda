@@ -15,7 +15,7 @@
  */
 
 // Include $amanda_request instance
-$amandaRequestInstance = __DIR__ . "/../lcs_amanda/amanda_rc.php";
+$amandaRequestInstance = __DIR__ . "/../amanda/amanda_rc.php";
 require_once ($amandaRequestInstance);
 
 // Secure the AJAX request by validating the origin and request method
@@ -30,7 +30,7 @@ if (!isset($ajaxRequestData['action']) || !is_string($ajaxRequestData['action'])
 $ajaxRequestAction = (string) 'amanda_ajax_' . $ajaxRequestData['action'];
 
 // Define the path to Amanda functions file
-$amandaFunctions = __DIR__ . "/../lcs_amanda/amanda_functions.php";
+$amandaFunctions = __DIR__ . "/../amanda/amanda_functions.php";
 
 // Include Amanda functions to provide additional functionalities
 require_once ($amandaFunctions);
